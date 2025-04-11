@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clonar código') {
             steps {
-                git 'https://github.com/TU_USUARIO/TU_REPO.git' // o usa una ruta local
+                git 'https://github.com/Aaronre4/reto-final.git'
             }
         }
 
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $REGISTRY/$IMAGE_NAME:latest .'
+                sh 'docker build -t aaronre4/reto-final-python:latest .'
             }
         }
 
