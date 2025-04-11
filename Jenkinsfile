@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clonar código') {
             steps {
-                git 'https://github.com/Aaronre4/reto-final.git'
+                checkout scm
             }
         }
 
