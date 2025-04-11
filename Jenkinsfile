@@ -39,7 +39,7 @@ pipeline {
 
         stage('Push to Registry') {
             when {
-                branch pattern: "^(main|master|develop)$", comparator: "REGEXP"
+                branch 'main'
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
