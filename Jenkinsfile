@@ -6,6 +6,14 @@ pipeline {
         IMAGE_NAME = 'reto-final-python'
     }
 
+    stage('Mostrar rama') {
+        steps {
+            sh 'git branch -a'
+            sh 'echo "Rama actual: $(git rev-parse --abbrev-ref HEAD)"'
+        }
+    }
+
+    
     stages {
         stage('Clonar código') {
             steps {
