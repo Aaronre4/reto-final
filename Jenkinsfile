@@ -12,30 +12,14 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('Mostrar rama') {
-            steps {
-                sh 'git branch -a'
-                sh 'echo "Rama actual: $(git rev-parse --abbrev-ref HEAD)"'
-            }
-        }
-
-        stage('Force checkout') {
-            steps {
-                sh '''
-                    git fetch origin main
-                    git checkout main
-                '''
-            }
-        }
         
-        stage('Instalar flake8') {
+        stage('Install flake8') {
             steps {
                 sh 'pip install flake8'
             }
         }
 
-        stage('Instalar pytest') {
+        stage('Install pytest') {
             steps {
                 sh 'pip install pytest'
             }
@@ -66,9 +50,6 @@ pipeline {
         }
 
         stage('Push to Registry') {
-            when {
-                branch 'main'
-            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh '''
