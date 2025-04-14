@@ -51,7 +51,10 @@ pipeline {
 
         stage('Push to Registry') {
             when {
-                branch pattern: '^(main|master|develop)$', comparator: "REGEXP"
+                expression {
+                    def branch = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    return branch == "main" || branch == "master" || branch == "develop"
+                }
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
