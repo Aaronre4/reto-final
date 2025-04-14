@@ -5,14 +5,6 @@ pipeline {
         REGISTRY = 'aaronre4'
         IMAGE_NAME = 'reto-final-python'
     }
-
-    stage('Mostrar rama') {
-        steps {
-            sh 'git branch -a'
-            sh 'echo "Rama actual: $(git rev-parse --abbrev-ref HEAD)"'
-        }
-    }
-
     
     stages {
         stage('Clonar código') {
@@ -21,6 +13,13 @@ pipeline {
             }
         }
 
+        stage('Mostrar rama') {
+            steps {
+                sh 'git branch -a'
+                sh 'echo "Rama actual: $(git rev-parse --abbrev-ref HEAD)"'
+            }
+        }
+        
         stage('Instalar flake8') {
             steps {
                 sh 'pip install flake8'
