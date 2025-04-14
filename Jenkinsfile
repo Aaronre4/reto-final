@@ -13,6 +13,18 @@ pipeline {
             }
         }
 
+        stage('Instalar flake8') {
+            steps {
+                sh 'pip install flake8'
+            }
+        }
+
+        stage('Instalar pytest') {
+            steps {
+                sh 'pip install pytest'
+            }
+        }
+        
         stage('Install Dependencies') {
             steps {
                 sh 'pip install -r requirements.txt'
@@ -21,7 +33,7 @@ pipeline {
 
         stage('Lint') {
             steps {
-                sh 'source venv/bin/activate && flake8 app || true'
+                sh 'flake8 app || true'
             }
         }
 
