@@ -19,6 +19,15 @@ pipeline {
                 sh 'echo "Rama actual: $(git rev-parse --abbrev-ref HEAD)"'
             }
         }
+
+        stage('Force checkout') {
+            steps {
+                sh '''
+                    git fetch origin main
+                    git checkout main
+                '''
+            }
+        }
         
         stage('Instalar flake8') {
             steps {
