@@ -21,7 +21,7 @@ pipeline {
 
         stage('Lint') {
             steps {
-                sh 'flake8 app || true'
+                sh 'source venv/bin/activate && flake8 app || true'
             }
         }
 
