@@ -52,7 +52,7 @@ pipeline {
         stage('Push to Registry') {
             when {
                 expression {
-                    def branch = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+                    def branch = sh(script: 'git symbolic-ref --short HEAD', returnStdout: true).trim()
                     echo "Rama actual: ${branch}"
                     return branch == "main" || branch == "master" || branch == "develop"
                 }
