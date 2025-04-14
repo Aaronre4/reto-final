@@ -9,6 +9,8 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config_dict[config_name])
 
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test_tasks.db"
+
     # Initialize the database
     db.init_app(app)
 
